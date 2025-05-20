@@ -33,7 +33,7 @@ function initializeCalendar(calendarEl, eventFormContainer, eventFormTitle, even
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-		firstDay: 1, // Sunday is 0, Monday is 1
+		firstDay: 1, 
         headerToolbar: {
             left: 'prev,next',
             center: 'title',
@@ -42,36 +42,39 @@ function initializeCalendar(calendarEl, eventFormContainer, eventFormTitle, even
         events: calendarEvents,
         selectable: true,
         editable: true,
-        eventDisplay: 'block', // Ensure events are rendered as blocks
-        height: 'auto', // Adjust height to content
-        contentHeight: 'auto', // Adjust content height to content
-        eventTimeFormat: { // Example: 09:00
+        eventDisplay: 'block', 
+        height: 'auto', 
+        contentHeight: 'auto', 
+        eventTimeFormat: { 
             hour: 'numeric',
             minute: '2-digit',
-            meridiem: false, // Use 24-hour format
+            meridiem: false, 
 			hour12: false
         },
 
         select: function(selectionInfo) {
             clearEventForm();
-            currentlyEditingEventId = null; // Ensure we're adding a new event
-            eventStartDateInput.value = selectionInfo.startStr.substring(0, 10); //YYYY-MM-DD
+            currentlyEditingEventId = null; 
+            eventStartDateInput.value = selectionInfo.startStr.substring(0, 10); 
 
             if (selectionInfo.allDay) {
-                // For all-day selections, FullCalendar's end date is exclusive.
-                // If it's a multi-day all-day selection, adjust the end date for display.
                 if (selectionInfo.startStr !== selectionInfo.endStr) {
                     const endDate = new Date(selectionInfo.endStr);
-                    endDate.setDate(endDate.getDate() - 1); // Make it inclusive for display
+                    endDate.setDate(endDate.getDate() - 1); 
                     eventEndDateInput.value = endDate.toISOString().substring(0, 10);
+                } else {
+                    eventEndDateInput.value = '';
                 }
-            } else { // Timed selection
+            } else { 
                 if (selectionInfo.startStr.includes('T')) {
-                    eventStartTimeInput.value = selectionInfo.startStr.substring(11, 16); // HH:mm
+                    eventStartTimeInput.value = selectionInfo.startStr.substring(11, 16); 
                 }
                 if (selectionInfo.endStr && selectionInfo.endStr.includes('T')) {
-                    eventEndDateInput.value = selectionInfo.endStr.substring(0, 10); // YYYY-MM-DD
-                    eventEndTimeInput.value = selectionInfo.endStr.substring(11, 16); // HH:mm
+                    eventEndDateInput.value = selectionInfo.endStr.substring(0, 10); 
+                    eventEndTimeInput.value = selectionInfo.endStr.substring(11, 16); 
+                } else {
+                    eventEndDateInput.value = '';
+                    eventEndTimeInput.value = '';
                 }
             }
             showEventForm(false);
@@ -79,34 +82,29 @@ function initializeCalendar(calendarEl, eventFormContainer, eventFormTitle, even
         },
 
         eventClick: function(clickInfo) {
-            clickInfo.jsEvent.preventDefault(); // Prevent browser navigation for links
+            clickInfo.jsEvent.preventDefault(); 
 
             currentlyEditingEventId = clickInfo.event.id;
-
             eventTitleInput.value = clickInfo.event.title;
 
             if (clickInfo.event.start) {
                 const startDate = clickInfo.event.start;
                 eventStartDateInput.value = startDate.toISOString().substring(0, 10);
                 if (!clickInfo.event.allDay && clickInfo.event.startStr.includes('T')) {
-                    eventStartTimeInput.value = startDate.toTimeString().substring(0, 5); // HH:mm
+                    eventStartTimeInput.value = startDate.toTimeString().substring(0, 5); 
                 } else {
                     eventStartTimeInput.value = '';
                 }
             }
 
-            // Handle end date/time population
             if (clickInfo.event.end) {
                 const endDate = clickInfo.event.end;
                 if (clickInfo.event.allDay) {
-                    // For all-day events, FullCalendar stores the end date as the morning of the next day.
-                    // For display, we want the actual last day of the event.
                     const displayEndDate = new Date(endDate.valueOf());
                     displayEndDate.setDate(endDate.getDate() - 1);
                     if (displayEndDate.toISOString().substring(0,10) !== eventStartDateInput.value) {
                         eventEndDateInput.value = displayEndDate.toISOString().substring(0, 10);
                     } else {
-                        // if end is same as start for allday, don't populate end date
                          eventEndDateInput.value = '';
                     }
                 } else {
@@ -114,19 +112,19 @@ function initializeCalendar(calendarEl, eventFormContainer, eventFormTitle, even
                 }
 
                 if (!clickInfo.event.allDay && clickInfo.event.endStr.includes('T')) {
-                    eventEndTimeInput.value = endDate.toTimeString().substring(0, 5); // HH:mm
+                    eventEndTimeInput.value = endDate.toTimeString().substring(0, 5); 
                 } else {
                     eventEndTimeInput.value = '';
                 }
-            } else { // No end date/time from FullCalendar
+            } else { 
                 eventEndDateInput.value = '';
                 eventEndTimeInput.value = '';
             }
 
             eventDescriptionInput.value = clickInfo.event.extendedProps.description || '';
-            eventColorInput.value = clickInfo.event.backgroundColor || '#007bff'; // Default color if none set
+            eventColorInput.value = clickInfo.event.backgroundColor || '#007bff'; 
 
-            showEventForm(true); // Open form in editing mode
+            showEventForm(true); 
             eventTitleInput.focus();
         },
 
@@ -148,26 +146,23 @@ function initializeCalendar(calendarEl, eventFormContainer, eventFormTitle, even
         if (eventIndex > -1) {
             calendarEvents[eventIndex].title = changedEvent.title;
             calendarEvents[eventIndex].start = changedEvent.startStr;
-            calendarEvents[eventIndex].end = changedEvent.endStr; // Make sure to get endStr
+            calendarEvents[eventIndex].end = changedEvent.endStr; 
             calendarEvents[eventIndex].allDay = changedEvent.allDay;
             calendarEvents[eventIndex].backgroundColor = changedEvent.backgroundColor;
             calendarEvents[eventIndex].borderColor = changedEvent.borderColor;
-            // extendedProps should be preserved if not directly changed by FullCalendar
-            // If you modify extendedProps via the form, ensure they're saved here too.
             saveCalendarEventsToLocalStorage();
         }
     }
 
-    // Expose functions and variables that might be needed by main.js
     return {
         showEventForm,
         hideEventForm,
         clearEventForm,
         saveCalendarEventsToLocalStorage,
-        getCalendarInstance: () => calendar, // Allow access to calendar instance if needed
+        getCalendarInstance: () => calendar, 
         getCurrentlyEditingEventId: () => currentlyEditingEventId,
         setCurrentlyEditingEventId: (id) => { currentlyEditingEventId = id; },
-        getCalendarEvents: () => calendarEvents, // Expose calendarEvents array
-        setCalendarEvents: (events) => { calendarEvents = events; } // Allow updating calendarEvents array
+        getCalendarEvents: () => calendarEvents, 
+        setCalendarEvents: (events) => { calendarEvents = events; } 
     };
 }

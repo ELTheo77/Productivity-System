@@ -1,5 +1,5 @@
 .calendar-section {
-    flex: 3;
+    flex: 1;
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -7,6 +7,8 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .calendar-header {
     display: flex;
@@ -128,7 +130,6 @@
     flex-grow: 1;
 }
 
-/* FullCalendar specific styles */
 .fc {
     font-size: 0.9em;
 }

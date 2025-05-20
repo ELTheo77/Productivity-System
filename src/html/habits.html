@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity App - Habits</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/habits.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="main.html">Home</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+            <li><a href="tasks.html">Tasks</a></li>
+            <li><a href="habits.html" class="active">Habits</a></li>
+        </ul>
+    </nav>
+    <div class="page-container">
+        <div class="app-container">
+            <div class="habits-section">
+                <h1>Habit Tracker</h1>
+                <p>Habit tracking functionality will be implemented here.</p>
+                <div class="habit-form-container">
+                    <h2>Add New Habit</h2>
+                    <input type="text" id="habitName" placeholder="Habit Name">
+                    <button id="addHabitButton">Add Habit</button>
+                </div>
+                <ul id="habitList">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/habits.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

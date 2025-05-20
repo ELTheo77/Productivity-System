@@ -10,7 +10,7 @@ function initializeTasks(taskInput, addTaskButton, taskListUl) {
         if (tasks.length === 0) {
             const li = document.createElement('li');
             li.textContent = "No tasks yet!";
-            li.style.textAlign = "center"; // Basic styling, can be moved to CSS
+            li.style.textAlign = "center"; 
             li.style.color = "#888";
             taskListUl.appendChild(li);
             return;
@@ -27,7 +27,7 @@ function initializeTasks(taskInput, addTaskButton, taskListUl) {
 
             const toggleButton = document.createElement('button');
             toggleButton.className = 'toggle-btn' + (task.completed ? ' completed-task' : '');
-            toggleButton.innerHTML = task.completed ? '&#x21B6;' : '&#x2714;'; // Undo / Checkmark
+            toggleButton.innerHTML = task.completed ? '&#x21B6;' : '&#x2714;'; 
             toggleButton.title = task.completed ? 'Mark Incomplete' : 'Mark Complete';
             toggleButton.onclick = () => {
                 tasks[index].completed = !tasks[index].completed;
@@ -37,7 +37,7 @@ function initializeTasks(taskInput, addTaskButton, taskListUl) {
 
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-btn';
-            deleteButton.innerHTML = '&#x1F5D1;'; // Trash can icon
+            deleteButton.innerHTML = '&#x1F5D1;'; 
             deleteButton.title = 'Delete Task';
             deleteButton.onclick = () => {
                 tasks.splice(index, 1);
@@ -53,26 +53,26 @@ function initializeTasks(taskInput, addTaskButton, taskListUl) {
         });
     }
 
-    addTaskButton.onclick = () => {
-        const text = taskInput.value.trim();
-        if (text) {
-            tasks.push({ text: text, completed: false });
-            taskInput.value = ''; // Clear input
-            saveTasksToLocalStorage();
-            renderTasks();
-        } else {
-            alert('Please enter a task.'); // Simple validation
-        }
-    };
+    if (addTaskButton) {
+        addTaskButton.onclick = () => {
+            const text = taskInput.value.trim();
+            if (text) {
+                tasks.push({ text: text, completed: false });
+                taskInput.value = ''; 
+                saveTasksToLocalStorage();
+                renderTasks();
+            } else {
+                alert('Please enter a task.'); 
+            }
+        };
+    }
 
-    taskInput.onkeypress = (e) => {
-        if (e.key === 'Enter') {
-            addTaskButton.click();
-        }
-    };
-
-    // Initial render
+    if (taskInput) {
+        taskInput.onkeypress = (e) => {
+            if (e.key === 'Enter') {
+                if (addTaskButton) addTaskButton.click();
+            }
+        };
+    }
     renderTasks();
-
-    // No specific functions to expose for tasks currently, but you could if needed.
 }

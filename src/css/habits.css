@@ -1,0 +1,68 @@
+.habits-section {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.habits-section h1 {
+    font-size: 1.75em;
+    color: #212529;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.habit-form-container {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.habit-form-container input[type="text"] {
+    flex-grow: 1;
+    padding: 10px 12px;
+    font-size: 0.95em;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.habit-form-container button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.habit-form-container button:hover {
+    background-color: #0056b3;
+}
+
+#habitList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#habitList li {
+    padding: 10px 5px;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+#habitList li:last-child {
+    border-bottom: none;
+}

@@ -5,10 +5,12 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    max-height: calc(100vh - 40px);
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
 }
 .todo-section h1 {
     font-size: 1.75em;
