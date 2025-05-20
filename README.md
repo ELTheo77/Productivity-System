@@ -46,6 +46,7 @@ No build steps or dependencies (other than the included FullCalendar library) ar
 * **Task Editing:** Allow users to edit existing tasks
 * **Task Categories/Labels:** Allow users to assign categories or labels to tasks for better organization and filtering
 * **Task Importance/Urgency:** Add a way to mark tasks by importance or urgency and sort/filter accordingly
+* **Task Reordering:** Allow users to drag-and-drop tasks for reordering
 * **Habit Tracker:**
     * Add, edit, and delete habits
     * Track daily progress for each habit
