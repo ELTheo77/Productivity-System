@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.app-container {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    padding: 20px;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+/* Utility and General Form Styles (can be further split if needed) */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+.btn-danger:hover { background-color: #c82333; border-color: #bd2130;}
+
+
+@media (max-width: 992px) {
+    .app-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .calendar-section, .todo-section { /* Adjusted to affect both */
+        padding: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .calendar-header { /* This is calendar specific, consider moving */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .btn-show-form { /* This is calendar specific, consider moving */
+        width: 100%;
+    }
+    .form-row { /* General form style */
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-row .form-col input, /* General form style */
+    .form-row .form-col select, /* General form style */
+    .form-row .form-col textarea { /* General form style */
+        margin-bottom: 15px;
+    }
+    .fc .fc-toolbar { /* FullCalendar specific */
+        flex-direction: column;
+        gap: 5px;
+    }
+    .fc .fc-toolbar-chunk { /* FullCalendar specific */
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+}
