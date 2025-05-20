@@ -1,5 +1,9 @@
 # Productivity System
 
+
+#### **Update:** Deployment coming soon, after recent migration to React!
+
+
 This is a personal productivity application designed to help manage events, tasks, and eventually, much more. It started as a personal project, but hopefully will evolve into much more.
 
 ## Current Features

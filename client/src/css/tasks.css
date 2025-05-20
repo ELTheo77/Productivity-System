@@ -1,0 +1,148 @@
+/* client/src/css/tasks.css */
+.tasks-page-container { /* New wrapper class for TasksPage */
+    display: flex;
+    flex-direction: row; /* For side-by-side layout later */
+    gap: 20px;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.todo-section {
+    /* flex: 1; /* Remove this if you want it to have a fixed/max width */
+    width: 100%; /* Default width for smaller screens */
+    max-width: 450px; /* << SET YOUR DESIRED NARROWER WIDTH HERE */
+    /* margin-right: auto; /* Pushes it to the left if container is flex and wider */
+    /* margin-left: 0; /* Ensure it's aligned left */
+    /* The rest of your .todo-section styles remain: */
+    min-width: 280px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.visualization-section {
+    flex: 1; /* Will take up remaining space */
+    background-color: #f9f9f9; /* Example background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    min-height: 300px; /* Example height */
+}
+
+.todo-section h1 {
+    font-size: 1.75em;
+    color: #212529;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Task Form Styles */
+.todo-form {
+    display: flex; /* Align input and button nicely */
+    gap: 10px; /* Space between input and button */
+    margin-bottom: 20px;
+}
+
+.todo-form input[type="text"] {
+    flex-grow: 1; /* Input takes most of the space */
+    padding: 10px 12px;
+    font-size: 0.95em;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* margin-bottom: 10px; /* Removed as form is now flex */
+}
+
+.todo-form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.todo-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Task List Styles */
+#taskList { /* Keep ID if other JS or very specific CSS targets it, otherwise class is fine */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allows the list to take available vertical space before scrolling */
+}
+
+#taskList li {
+    padding: 10px 5px;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+#taskList li:last-child {
+    border-bottom: none;
+}
+
+#taskList li.completed span { /* Style for completed task text */
+    text-decoration: line-through;
+    color: #adb5bd;
+}
+
+#taskList .task-actions {
+    display: flex;
+    align-items: center;
+}
+
+#taskList .task-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1em; /* Adjust icon size if needed */
+    margin-left: 8px; /* Increased margin for better spacing */
+    padding: 3px;
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+#taskList .task-actions button:hover {
+    color: #343a40;
+}
+
+#taskList .task-actions .delete-btn:hover {
+    color: #dc3545; /* Red for delete hover */
+}
+
+#taskList .task-actions .toggle-btn.completed-task { /* Icon when task is completed */
+    color: #28a745; /* Green for completed toggle */
+}
+#taskList .task-actions .toggle-btn.completed-task:hover {
+    color: #218838;
+}
+
+/* Responsive adjustments for tasks section if needed */
+@media (max-width: 768px) {
+    .todo-form {
+        flex-direction: column; /* Stack input and button on small screens */
+    }
+    .todo-form input[type="text"] {
+        margin-bottom: 10px; /* Add margin back when stacked */
+    }
+    .todo-form button {
+        width: 100%; /* Full width button when stacked */
+    }
+}
+

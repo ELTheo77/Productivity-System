@@ -1,0 +1,169 @@
+/* client/src/css/main.css */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navigation Menu Styles */
+.main-nav {
+    background-color: #333;
+    padding: 10px 0;
+    position: sticky; /* Makes the nav bar stay at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensures it's above other content */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.main-nav ul li {
+    display: inline-block;
+    margin: 0 10px; /* Reduced margin for potentially more items */
+}
+
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px; /* Slightly adjusted padding */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 0.95em; /* Slightly smaller font for nav */
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active { /* .active class will be added by NavLink */
+    background-color: #555;
+}
+
+/* Page Container to ensure content is properly offset from sticky nav */
+.page-container {
+    padding-top: 20px; /* Give some space below the nav */
+    /* If your nav height changes, adjust this value (nav height + desired space) */
+}
+
+/* Main App Container - for consistent padding and max-width across pages */
+.app-container {
+    display: flex; /* Helps in centering or structuring content within pages */
+    flex-direction: column; /* Default, pages can override */
+    gap: 20px; /* Default gap between sections if a page has multiple */
+    padding: 20px;
+    max-width: 1800px; /* Max width of the content area */
+    margin: 0 auto; /* Center the content area */
+    box-sizing: border-box;
+}
+
+
+/* General Form Styles (can be expanded) */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px; /* Add bottom margin to the row itself */
+}
+.form-row .form-col {
+    flex: 1;
+}
+/* Ensure inputs in form-col don't have double margin if .event-form-container input also has margin-bottom */
+.form-row .form-col input,
+.form-row .form-col select,
+.form-row .form-col textarea {
+    margin-bottom: 0; /* Override if more specific styles below add it back */
+}
+
+
+/* Utility Styles (like .btn-danger) */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Styles for the main.html content placeholder */
+.main-content {
+    flex: 1;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 30px 20px; /* Adjusted padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.main-content h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+
+/* Responsive Adjustments from original style.css */
+@media (max-width: 992px) {
+    .app-container { /* This applies to the content area within each page */
+        flex-direction: column;
+        padding: 15px;
+    }
+    /* Specific sections will be styled in their own CSS, but if app-container itself shrinks, it's fine */
+}
+
+@media (max-width: 768px) {
+    .main-nav ul li {
+        margin: 0 5px; /* Reduce margin for smaller screens */
+    }
+    .main-nav ul li a {
+        padding: 8px 8px; /* Reduce padding */
+        font-size: 0.9em;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0; /* Reset gap as margin-bottom will handle spacing */
+    }
+    .form-row .form-col input,
+    .form-row .form-col select,
+    .form-row .form-col textarea {
+        margin-bottom: 15px; /* Add back margin-bottom for stacked items */
+    }
+    .form-row .form-col:last-child input,
+    .form-row .form-col:last-child select,
+    .form-row .form-col:last-child textarea {
+        margin-bottom: 0; /* Remove margin from last item in a stacked column */
+    }
+
+
+    /* Calendar specific responsive styles - will be in calendar.css but good to note related changes */
+    /* .calendar-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .btn-show-form {
+        width: 100%;
+    }
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .fc .fc-toolbar-chunk {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    } */
+}

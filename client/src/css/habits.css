@@ -1,0 +1,132 @@
+/* client/src/css/habits.css */
+.habits-section {
+    flex: 1; /* Allows the habits section to take available space */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    /* max-width: 800px; /* Optional: Constrain width on larger screens */
+    /* margin: 0 auto; /* Center if max-width is applied */
+    display: flex;
+    flex-direction: column;
+}
+
+.habits-section h1 {
+    font-size: 1.75em;
+    color: #212529;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Habit Form Styles */
+.habit-form-container {
+    display: flex;
+    gap: 10px; /* Space between input and button */
+    margin-bottom: 20px;
+}
+
+.habit-form-container input[type="text"] {
+    flex-grow: 1; /* Input takes most of the space */
+    padding: 10px 12px;
+    font-size: 0.95em;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.habit-form-container button {
+    padding: 10px 15px;
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+.habit-form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Habit List Styles */
+#habitList { /* Keep ID if other JS or very specific CSS targets it */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allows the list to take available vertical space if container has height */
+}
+
+#habitList li {
+    padding: 12px 8px; /* Slightly more padding for habit items */
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95em; /* Slightly larger font for habit names */
+}
+
+#habitList li:last-child {
+    border-bottom: none;
+}
+
+.habit-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between action buttons */
+}
+
+.habit-actions button {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent; /* Base for all buttons */
+}
+
+.habit-actions .track-btn {
+    background-color: #6c757d; /* Grey for default track button */
+    color: white;
+    border-color: #6c757d;
+}
+.habit-actions .track-btn.tracked {
+    background-color: #28a745; /* Green when tracked */
+    border-color: #28a745;
+}
+.habit-actions .track-btn:hover {
+    opacity: 0.85;
+}
+
+/* Using .btn-danger from main.css for delete button consistency */
+.habit-actions .btn-danger {
+    font-size: 0.85em; /* Match other action buttons */
+    padding: 6px 10px;
+}
+
+
+/* Responsive adjustments for habits section if needed */
+@media (max-width: 768px) {
+    .habit-form-container {
+        flex-direction: column; /* Stack input and button on small screens */
+    }
+    .habit-form-container input[type="text"] {
+        margin-bottom: 10px; /* Add margin back when stacked */
+    }
+    .habit-form-container button {
+        width: 100%; /* Full width button when stacked */
+    }
+
+    #habitList li {
+        flex-direction: column; /* Stack habit name and actions on small screens */
+        align-items: flex-start; /* Align items to the start */
+        gap: 8px; /* Add some gap when stacked */
+    }
+    .habit-actions {
+        width: 100%;
+        justify-content: flex-end; /* Align buttons to the right when stacked */
+    }
+}
