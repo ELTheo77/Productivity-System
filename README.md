@@ -32,9 +32,9 @@ Currently, the application is a pure frontend project. To run it locally:
     git clone https://github.com/ELTheo77/Productivity-System.git
     cd productivity-system
     ```
-2.  **Open `index.html` in your web browser:**
-    * Navigate to the project directory in your file explorer
-    * Double-click the `index.html` file, or right-click and choose "Open with" your preferred browser
+2.  **Open `main.html` in your web browser:**
+    * Navigate to the `productivity-system/src/html/` directory in your file explorer
+    * Double-click any `.html` file, or right-click and choose "Open with" your preferred browser
 
 No build steps or dependencies (other than the included FullCalendar library) are required at this stage.
 
@@ -43,12 +43,14 @@ No build steps or dependencies (other than the included FullCalendar library) ar
 ### Near Future / Next Changes:
 
 * **Recurring Events:** Implement functionality for daily, weekly, monthly, and yearly recurring events in the calendar
+* **Task Editing:** Allow users to edit existing tasks
 * **Task Categories/Labels:** Allow users to assign categories or labels to tasks for better organization and filtering
 * **Task Importance/Urgency:** Add a way to mark tasks by importance or urgency and sort/filter accordingly
 * **Habit Tracker:**
     * Add, edit, and delete habits
     * Track daily progress for each habit
-* **Backend & Database Integration:** Introduce a backend service and database for persistent data storage, enabling data access across devices and sessions (moving beyond `localStorage`)
+* **Account Functionalities:** Implement user registration, sign-in, and sign-out
+* **Backend & Database Integration:** Introduce a backend service and database for persistent data storage (especially for account functionalities), enabling data access across devices and sessions (moving beyond `localStorage`)
 
 ### Further Future:
 
