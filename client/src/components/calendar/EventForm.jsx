@@ -1,5 +1,40 @@
 import React, { useState, useEffect } from 'react';
 
+const paletteColors = [
+  // Reds & Pinks
+  { value: '#dc3545', name: 'Red' },        // Original Red (Danger)
+  { value: '#f08080', name: 'Light Coral' },
+  { value: '#ff69b4', name: 'Hot Pink' },
+  { value: '#ffc0cb', name: 'Pink' },
+  // Oranges & Yellows
+  { value: '#fd7e14', name: 'Orange' },     // Original Orange
+  { value: '#ffa500', name: 'Orange (Web)' },
+  { value: '#ffc107', name: 'Amber' },
+  { value: '#fffacd', name: 'Lemon Chiffon' },
+  // Greens
+  { value: '#28a745', name: 'Green' },      // Original Green (Success)
+  { value: '#20c997', name: 'Teal Green' },
+  { value: '#90ee90', name: 'Light Green' },
+  { value: '#3cb371', name: 'Medium Sea Green' },
+  // Blues & Teals
+  { value: '#007bff', name: 'Blue' },       // Original Blue (Primary)
+  { value: '#17a2b8', name: 'Teal' },       // Original Teal (Info)
+  { value: '#0dcaf0', name: 'Cyan Info' },
+  { value: '#add8e6', name: 'Light Blue' },
+  { value: '#4169e1', name: 'Royal Blue' },
+  // Purples
+  { value: '#6f42c1', name: 'Purple' },     // Original Purple
+  { value: '#8a2be2', name: 'Blue Violet' },
+  { value: '#dda0dd', name: 'Plum' },
+  { value: '#e6e6fa', name: 'Lavender' },
+  // Browns & Grays
+  { value: '#a52a2a', name: 'Brown' },
+  { value: '#d2b48c', name: 'Tan' },
+  { value: '#6c757d', name: 'Gray' },
+  { value: '#343a40', name: 'Dark Gray' },  // Original Dark Gray
+  { value: '#d3d3d3', name: 'Light Gray' },
+];
+
 function EventForm({ event: initialEvent, selectionInfo, onSave, onClose, onDelete }) {
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -231,16 +266,22 @@ function EventForm({ event: initialEvent, selectionInfo, onSave, onClose, onDele
         <label htmlFor="eventDescription">Description:</label>
         <textarea id="eventDescription" rows="3" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
 
-        <label htmlFor="eventColor">Color:</label>
-        <select id="eventColor" value={color} onChange={(e) => setColor(e.target.value)}>
-          <option value="#007bff">Blue (Primary)</option>
-          <option value="#28a745">Green (Success)</option>
-          <option value="#dc3545">Red (Danger)</option>
-          <option value="#6f42c1">Purple</option>
-          <option value="#fd7e14">Orange</option>
-          <option value="#17a2b8">Teal (Info)</option>
-          <option value="#343a40">Dark Gray</option>
-        </select>
+        <label htmlFor="eventColorPalette">Color:</label>
+        <div id="eventColorPalette" className="color-palette-container">
+          {paletteColors.map((paletteColor) => (
+            <button
+              type="button" // Important: type="button" to prevent form submission
+              key={paletteColor.value}
+              className={`color-palette-item ${color === paletteColor.value ? 'selected' : ''}`}
+              style={{ backgroundColor: paletteColor.value }}
+              onClick={() => setColor(paletteColor.value)}
+              title={paletteColor.name} // Tooltip with color name
+            >
+              {/* Optionally, add a checkmark or other indicator for the selected color */}
+              {color === paletteColor.value && <span className="color-selected-indicator">&#10003;</span>}
+            </button>
+          ))}
+        </div>
 
         <div className="form-buttons">
           <button type="submit" id="saveEventButton">{isEditing ? 'Update Event' : 'Save Event'}</button>

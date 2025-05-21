@@ -286,3 +286,47 @@
         min-height: 60px; /* Reduce min height of day cells */
     }
 }
+
+.color-palette-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow colors to wrap to the next line */
+  gap: 8px; /* Space between color circles */
+  margin-bottom: 15px; /* Space below the palette */
+  padding: 5px;
+  border: 1px solid #ced4da; /* Optional: border around the palette */
+  border-radius: 4px;
+  background-color: #fff; /* Match form input background */
+}
+
+.color-palette-item {
+  width: 28px; /* Size of the color circle */
+  height: 28px;
+  border-radius: 50%; /* Make it a circle */
+  border: 2px solid transparent; /* Base border, transparent */
+  cursor: pointer;
+  padding: 0; /* Remove default button padding */
+  display: flex; /* For centering the checkmark */
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease-in-out, transform 0.1s ease;
+}
+
+.color-palette-item:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  border-color: #adb5bd; /* Subtle border on hover if not selected */
+}
+
+.color-palette-item.selected {
+  border-color: #000; /* Prominent border for selected color */
+  box-shadow: 0 0 0 1px #fff inset; /* Inner white ring to make dark selected colors pop */
+  transform: scale(1.1);
+}
+
+.color-selected-indicator {
+  color: #fff; /* Color of the checkmark */
+  font-size: 14px; /* Size of the checkmark */
+  font-weight: bold;
+  /* Ensure checkmark is visible on dark colors.
+     May need text-shadow if some colors make white checkmark hard to see.
+     e.g., text-shadow: 0px 0px 2px rgba(0,0,0,0.7); */
+}
